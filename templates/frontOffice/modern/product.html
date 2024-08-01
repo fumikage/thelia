@@ -1,8 +1,19 @@
+
 {extends file="layout.tpl"}
+
+
+
+
 
 {block name="init"}
   {$product_id={product attr="id"}}
   {$product_virtual={product attr="virtual"}}
+{/block}
+
+{block name="meta"}
+  {loop type="image" name="product-image"  product=$product_id limit="1" }
+    <meta property="og:image" content="{$IMAGE_URL}">                             
+  {/loop}
 {/block}
 
 {block name="css" append}
