@@ -32,6 +32,19 @@
   {$seoPageTitle = $store_name}
 {/if}
 
+{* Build page canonical url *}
+{$seoPageUrlArray = explode("?", "${navigate to="current"}")}
+{$seoPageUrl = $seoPageUrlArray[0]}
+
+{$seoUrlParams= null}
+
+{if preg_match("/\bpage=(\d+)/", "${navigate to="current"}", $seoUrlParams)}
+  {$seoUrlParams = $seoUrlParams[1]}
+  {if $seoUrlParams > 1}
+  {$seoPageUrl = "$seoPageUrl?page=$seoUrlParams"}
+  {/if}
+{/if}
+
 {* Build a clean page descritpion *}
 
 
@@ -124,6 +137,8 @@
     href="{url path="/feed/content/%lang" lang=$lang_locale}">
   <link rel="alternate" type="application/rss+xml" title="{intl l='All brands'}"
     href="{url path="/feed/brand/%lang" lang=$lang_locale}">
+  <link rel="canonical" href="{$seoPageUrl}">
+
   {block name="feeds"}{/block}
 
   {hook name="main.head-bottom"}
