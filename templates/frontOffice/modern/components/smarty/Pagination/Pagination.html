@@ -12,7 +12,11 @@
         </a>
     {/if}
     {pageloop rel=$loop_name}
+    {if (($PAGE - 1) eq $CURRENT) || (($PAGE + 1) eq $CURRENT) || ($PAGE eq $CURRENT) ||($PAGE eq $LAST) || ($PAGE eq 1)}
+    {if (($PAGE +1) eq $CURRENT) && ($CURRENT neq 2) && ($LAST >4)}<div class="Pagination-separator">...</div>{/if}
       <a class="Pagination-link {if $PAGE == $CURRENT}current{/if}" href="{page_link page=$PAGE}"> {$PAGE} </a>
+      {if (($PAGE -1) eq $CURRENT)&& ($CURRENT neq ($LAST -1)) && ($LAST >4) }<div class="Pagination-separator">...</div>{/if}
+      {/if}
       {if ($PAGE eq $LAST) || (($PAGE eq $END) && ($END < $LAST))}
           {if $CURRENT lt $LAST}
               {set_next_page_meta_link url={page_link page={$NEXT}}}

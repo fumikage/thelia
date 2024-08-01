@@ -25,6 +25,7 @@
       border-color: theme('colors.gray.400');
       outline: none;
     }
+
     &.current {
       border-color: theme('colors.main');
 
@@ -56,5 +57,10 @@
       transform: rotate(180deg);
       transform-origin: center;
     }
+  }
+
+  &-separator {
+    position: relative;
+    transform: translateY(-25%);
   }
 }
